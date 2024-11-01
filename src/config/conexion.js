@@ -2,7 +2,7 @@ const mysql = require("mysql");
 
 let conexion = mysql.createConnection({
     host: "localhost",
-    database: "parqueo",
+    database: "Parking",
     user: "root",
     password: ""
 });
