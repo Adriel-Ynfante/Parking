@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Registration Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* Estilos generales */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', serif; 
+        }
+
+        body {
+            background-color: #ffffff; 
+            color: #000000; 
+        }
+
+        /* Estilo del formulario de login */
+        .fondo {
+            position: fixed; 
+            top: 15%;
+            left: 35%;
+            width: 400px;
+            height: auto; 
+            background: rgba(0, 0, 0, 0.7); 
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            backdrop-filter: blur(8px); 
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transform: scale(1);
+            transition: transform 0.3s ease, height 0.2s ease;
+        }
+
+        .fondo.active-btn {
+            transform: scale(1); 
+        }
+
+        .fondo.active {
+            height: auto; 
+        }
+
+        .fondo .contenedor-form {
+            width: 100%;
+            padding: 60px;
+            background: #fff; 
+            border-radius: 20px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        }
+
+        .fondo .contenedor-form.login {
+            transition: 0.17s ease;
+            transform: translateX(0); 
+        }
+
+        .fondo.active .contenedor-form.login {
+            transition: none;
+            transform: translateX(-400px); 
+        }
+
+        .fondo .contenedor-form.registrar {
+            position: absolute;
+            transition: none;
+            transform: translateX(400px); 
+        }
+
+        .fondo.active .contenedor-form.registrar {
+            transition: transform 0.17s ease;
+            transform: translateX(0);
+        }
+
+        .fondo .icono-cerrar {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom-left-radius: 20px;
+            z-index: 1;
+            font-size: 1.8em;
+            color: #bf0000;
+            cursor: pointer;
+        }
+
+        /* Estilo de los iconos del formulario */
+        .iconos {
+            display: flex;
+            justify-content: center;
+            gap: 12px; 
+            margin-top: 20px; 
+        }
+
+        .iconos a {
+            display: inline-block;
+            font-size: 24px; 
+            color: black; 
+            transition: color 0.3s, transform 0.3s, filter 0.3s; 
+        }
+
+        .iconos a:hover,
+        .iconos a:focus {
+            color: rgb(0, 22, 163); 
+            transform: translateY(-5px); 
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        .iconos a:nth-child(1):hover,
+        .iconos a:nth-child(1):focus {
+            color: rgb(0, 22, 163); 
+        }
+
+        .iconos i {
+            border-radius: 25px;
+        }
+
+        .iconos a:nth-child(2):hover,
+        .iconos a:nth-child(2):focus {
+            color: rgb(0, 136, 214); 
+        }
+
+        .iconos a:nth-child(3):hover,
+        .iconos a:nth-child(3):focus {
+            color: rgb(228, 64, 95); 
+        }
+
+        .boton {
+            width: 100%;
+            height: 45px;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            background-color: #090f1d;
+            color: #F1EFEF;
+            transition: transform 0.1s ease;
+        }
+
+        .boton:active {
+            transform: scale(0.95);
+        }
+
+        .contenedor-form h2 {
+            font-size: 2em;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .contenedor-input {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            border-bottom: 2px solid #ccc; 
+            margin: 20px 0;
+        }
+
+        .contenedor-input label {
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            transform: translateY(-50%);
+            font-size: 1em;
+            font-weight: 600;
+            pointer-events: none;
+            transition: 0.4s;
+            color: #333; 
+        }
+
+        .contenedor-input input:focus ~ label,
+        .contenedor-input input:valid ~ label {
+            top: -5px; 
+        }
+
+        .contenedor-input input {
+            width: 100%;
+            height: 50px;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            color: #333; 
+            padding: 0 35px 5px;
+        }
+
+        .contenedor-input .icono {
+            position: absolute;
+            right: 8px;
+            font-size: 1.4rem;
+            color: #333; 
+            line-height: 50px;
+        }
+
+        .recordar {
+            margin: 0 0 15px; 
+            font-size: .9em;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+        }
+
+        .recordar label input {
+            accent-color: #090f1d;
+            margin-right: 3px;
+        }
+
+        .recordar a {
+            color: #333; 
+            text-decoration: none;
+        }
+
+        .recordar a:hover {
+            text-decoration: underline;
+        }
+
+        .registrar {
+            font-size: .9em;
+            color: #333; 
+            text-align: center;
+            margin: 20px 0; 
+        }
+
+        .registrar p a {
+            text-decoration: none;
+            color: #090f1d; 
+        }
+
+        .registrar p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="fondo">
+        <span class="icono-cerrar"><i class="bi bi-x"></i></span>
+        <div class="contenedor-form login">
+            <h2>Iniciar Sesión</h2>
+            <section class="iconos">
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-twitter"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+            </section>
+            <form action="/codLogin" method="post">
+             
+                <div class="contenedor-input">
+                    <span class="icono"><i class="bi bi-person-circle"></i></span>
+                    <input type="email" id="emailLogin" name="emailLogin" required>
+                    <label for="emailLogin">Correo Electonico</label>
+                </div>
+                <div class="contenedor-input">
+                    <span class="icono"><i class="bi bi-lock-fill"></i></span>
+                    <input type="passwordLogin" id="passwordLogin" name="passwordLogin" required>
+                    <label for="passwordLogin">Contraseña</label>
+                </div>
+                <div class="recordar">
+                    <label>
+                        <input type="checkbox"> Recordar
+                    </label>
+                    <a href="#">¿Olvidé la contraseña?</a>
+                </div>
+                <button type="submit" class="boton">Acceder</button>
+                <div class="registrar">
+                    <p>No tengo cuenta | <a href="#" class="registrar-link">Registrarse</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="contenedor-form registrar">
+            <h2>Registrarse</h2>
+            <section class="iconos">
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-twitter"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+            </section>
+            <form id="register" action="/regUsuario" method="post">
+                <div class="contenedor-input">
+                    <span class="icono"><i class="bi bi-person-circle"></i></span>
+                    <input type="text" id="userReg" name="userReg" required>
+                    <label for="userReg">Nombre de usuario</label>
+                </div>
+                <div class="contenedor-input">
+                    <span class="icono"><i class="bi bi-envelope"></i></span>
+                    <input type="email" id="emailReg" name="emailReg" required>
+                    <label for="emailReg">Correo Electrónico</label>
+                </div>
+                <div class="contenedor-input">
+                    <span class="icono"><i class="bi bi-lock-fill"></i></span>
+                    <input type="password" id="passwordReg" name="passwordReg" required>
+                    <label for="passwordReg">Contraseña</label>
+                </div>
+                <div class="recordar">
+                    <label>
+                        <input type="checkbox" required> Acepto los términos y condiciones
+                    </label>
+                </div>
+                <button type="submit" class="boton" name="registrar">Registrarme</button>
+                <div class="registrar">
+                    <p>¿Tienes una cuenta? <a href="#" class="login-link">Iniciar Sesión</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const fondo = document.querySelector('.fondo');
+            const loginLink = document.querySelector('.login-link');
+            const registrarLink = document.querySelector('.registrar-link');
+            const iconoCerrar = document.querySelector('.icono-cerrar');
+            
+            const toggleFondo = (isRegistering) => {
+                fondo.classList.toggle('active', isRegistering);
+            };
+
+            registrarLink?.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleFondo(true);
+            });
+
+            loginLink?.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleFondo(false);
+            });
+
+            iconoCerrar?.addEventListener('click', () => {
+                fondo.classList.remove('active-btn');
+            });
+        });
+    </script>
+</body>
+</html>

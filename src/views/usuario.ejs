@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Perfil de Usuario</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://unpkg.com/lucide@latest"></script>
+    </head>
+    
+    <body>
+<style>
+        body {
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #000000;
+        }
+        
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background-color: #f0f0f0;
+            border-right: 1px solid #d0d0d0;
+            transition: width 0.3s ease;
+        }
+        
+        .sidebar.minimized {
+            width: 60px;
+        }
+        
+        .sidebar-header {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .menu-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .toggle-sidebar {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .sidebar-menu {
+            list-style-type: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+        
+        .sidebar-menu li {
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .sidebar-menu li:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .sidebar-menu li i {
+            margin-right: 0.5rem;
+        }
+        
+        .content {
+            flex: 1;
+            padding: 2rem;
+        }
+        
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .profile-card {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .profile-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            cursor: pointer;
+            overflow: hidden;
+            border: 1px solid #d0d0d0;
+            margin-bottom: 1rem;
+        }
+        
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-right {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .form-group {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: 90%;
+            padding: 0.5rem;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            font-size: 1rem;
+            margin: 5px;
+            margin-top: 8px;
+        }
+        
+        textarea {
+            resize: vertical;
+        }
+        
+        .btn {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #333333;
+        }
+        
+        .btn-outline {
+            width: fit-content;
+            min-width: 100px;
+            height: 30px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 2.5px solid #000000;
+            box-shadow: 0px 0px 20px -20px;
+            cursor: pointer;
+            background-color: white;
+            transition: all 0.2s ease-in-out 0ms;
+            user-select: none;
+            font-family: 'Georgia', sans-serif;
+        }
+        
+        .btn-outline:hover {
+            background-color: #c2c2c2;
+            box-shadow: 0px 0px 20px -18px;
+        }
+        
+        .btn-outline:active {
+            transform: scale(0.95);
+        }
+        
+        .btn-icon {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        
+        .btn-danger {
+            background-color: #ff0000;
+            color: #ffffff;
+        }
+        
+        .btn-danger:hover {
+            background-color: #cc0000;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .settings-card {
+            grid-column: 1 / -1;
+        }
+        
+        .settings-card .settings-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .setting-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .setting-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .group {
+            display: flex;
+            line-height: 30px;
+            align-items: center;
+            position: relative;
+            max-width: 80%;
+        }
+        
+        .input {
+            width: 100%;
+            height: 40px;
+            line-height: 80px;
+            padding: 2px 2px 2px;
+            padding-left: 1.5rem;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            outline: none;
+            background-color: #f8fafc;
+            color: #0d0c22;
+            transition: .5s ease;
+        }
+        
+        .input::placeholder {
+            color: #94a3b8;
+        }
+        
+        .input:focus, input:hover {
+            outline: none;
+            border-color: rgb(0, 0, 0);
+            background-color: #fff;
+        }
+        
+        .icon {
+            position: absolute;
+            left: 1rem;
+            fill: none;
+            width: 1rem;
+            height: 1rem;
+        }
+        
+        .input[type="checkbox"] {
+            display: none;
+        }
+        
+        .custom-checkbox {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #333;
+            border-radius: 4px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .custom-checkbox::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background-color: #333;
+            border-radius: 2px;
+            opacity: 0;
+        }
+        
+        .input[type="checkbox"]:checked + .custom-checkbox::after {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #d0d0d0;
+            }
+        
+            .content {
+                padding: 1rem;
+            }
+        
+            .form-grid,
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+
+        <div class="container">
+            <nav id="sidebar" class="sidebar">
+                <div class="sidebar-header">
+                    <span class="menu-title">Menu</span>
+                    <button id="toggleSidebar" class="toggle-sidebar">
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+                <ul class="sidebar-menu">
+                    <li><i data-lucide="user"></i> <span>Perfil</span></li>
+                    <li><i data-lucide="settings"></i> <span>Configuración</span></li>
+                    <li><i data-lucide="log-out"></i> <span>Cerrar Sesión</span></li>
+                </ul>
+            </nav>
+            <main class="content">
+                <div class="card profile-card">
+                    <div class="profile-left">
+                        <div class="profile-picture" id="profilePicture">
+                            <span class="default-avatar">👤</span>
+                        </div>
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                        <button id="editProfileBtn" class="btn">Editar Perfil</button>
+                    </div>
+                    <div class="profile-right">
+                        <h2>Perfil de Usuario</h2>
+                        <form id="profileForm">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" id="nombre" name="nombre" value="<%=datos.codnombre%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" value="<%=datos.codemail%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono">Teléfono</label>
+                                    <input type="tel" id="telefono" name="telefono" value="<%= datos.telefono || '123-456-7890' %>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="direccion">Dirección</label>
+                                    <textarea id="direccion" name="direccion" disabled><%= datos.direccion || 'Calle Principal 123, Ciudad' %></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn save-btn" style="display: none;">Guardar Cambios</button>
+                        </form>
+                    </div>
+                </div>
+    
+                <div class="card-grid">
+                    <div class="card">
+                        <h2>Tarjetas de Crédito <button id="addCardBtn" class="btn-icon"><i data-lucide="plus-circle"></i></button></h2>
+                        <div id="cardList"></div>
+                        <form id="addCardForm" style="display: none;">
+                            <input type="text" name="numero" placeholder="Número de tarjeta" required>
+                            <input type="text" name="expiracion" placeholder="MM/YY" required>
+                            <button type="submit" class="btn">Agregar Tarjeta</button>
+                        </form>
+                    </div>
+                    <div class="card">
+                        <h2>Vehículos <button id="addVehicleBtn" class="btn-icon"><i data-lucide="plus-circle"></i></button></h2>
+                        <div id="vehicleList"></div>
+                        <form id="addVehicleForm" style="display: none;">
+                            <input type="text" name="marca" placeholder="Marca" required>
+                            <input type="text" name="modelo" placeholder="Modelo" required>
+                            <input type="text" name="placa" placeholder="Placa" required>
+                            <button type="submit" class="btn">Agregar Vehículo</button>
+                        </form>
+                    </div>
+                </div>
+    
+                <div class="card settings-card">
+                    <h2>Configuraciones</h2>
+                    <div class="settings-content">
+                        <div class="setting-item">
+                            <div class="setting-label">
+                                <i data-lucide="lock"></i>
+                                <span>Contraseña</span>
+                                <button class="btn-outline">Cambiar</button>
+                            </div>
+                            <div class="group">
+                                <input class="input" type="password">
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label for="notificaciones" class="setting-label">
+                                <i data-lucide="bell"></i>
+                                <span>Recibir notificaciones</span>
+                                <label>
+                                    <input type="checkbox" class="input">
+                                    <span class="custom-checkbox"></span>
+                                </label>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <label for="terminos" class="setting-label">
+                                <i data-lucide="file-text"></i>
+                                <span>Acepto los términos y condiciones</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                lucide.createIcons();
+    
+                const sidebar = document.getElementById('sidebar');
+                const toggleSidebarBtn = document.getElementById('toggleSidebar');
+                const profilePicture = document.getElementById('profilePicture');
+                const fileInput = document.getElementById('fileInput');
+                const editProfileBtn = document.getElementById('editProfileBtn');
+                const profileForm = document.getElementById('profileForm');
+                const addCardBtn = document.getElementById('addCardBtn');
+                const addCardForm = document.getElementById('addCardForm');
+                const cardList = document.getElementById('cardList');
+                const addVehicleBtn = document.getElementById('addVehicleBtn');
+                const addVehicleForm = document.getElementById('addVehicleForm');
+                const vehicleList = document.getElementById('vehicleList');
+    
+                let editMode = false;
+    
+                function toggleSidebar() {
+                    sidebar.classList.toggle('minimized');
+                    const menuTitle = document.querySelector('.menu-title');
+                    const menuItems = document.querySelectorAll('.sidebar-menu li span');
+    
+                    if (sidebar.classList.contains('minimized')) {
+                        menuTitle.style.display = 'none';
+                        menuItems.forEach(item => item.style.display = 'none');
+                        toggleSidebarBtn.innerHTML = '<i data-lucide="menu"></i>';
+                    } else {
+                        menuTitle.style.display = 'block';
+                        menuItems.forEach(item => item.style.display = 'inline');
+                        toggleSidebarBtn.innerHTML = '<i data-lucide="x"></i>';
+                    }
+                    lucide.createIcons();
+                }
+    
+                function toggleEditMode() {
+                    editMode = !editMode;
+                    const inputs = profileForm.querySelectorAll('input, textarea');
+                    const saveBtn = profileForm.querySelector('.save-btn');
+    
+                    inputs.forEach(input => input.disabled = !editMode);
+                    saveBtn.style.display = editMode ? 'block' : 'none';
+                    editProfileBtn.textContent = editMode ? 'Cancelar' : 'Editar Perfil';
+                }
+    
+                async function handleFileChange(event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const formData = new FormData();
+                        formData.append('foto', file);
+    
+                        try {
+                            const response = await fetch('/usuario/foto', {
+                                method: 'POST',
+                                body: formData
+                            });
+    
+                            const result = await response.json();
+                            if (result.success) {
+                                profilePicture.innerHTML = `<img src="${result.foto}" alt="Foto de perfil">`;
+                            } else {
+                                alert('Error al actualizar la foto de perfil');
+                            }
+                        } catch (error) {
+                            console.error('Error:', error);
+                            alert('Error al actualizar la foto de perfil');
+                        }
+                    }
+                }
+    
+                async function saveProfile(event) {
+                    event.preventDefault();
+                    const formData = new FormData(profileForm);
+                    const datos = Object.fromEntries(formData.entries());
+    
+                    try {
+                        const response = await fetch('/usuario/actualizar', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(datos)
+                        });
+    
+                        const result = await response.json();
+                        if (result.success) {
+                            alert('Perfil actualizado exitosamente');
+                            toggleEditMode();
+                        } else {
+                            alert('Error al actualizar el perfil');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('Error al actualizar el perfil');
+                    }
+                }
+    
+                async function addCard(event) {
+                    event.preventDefault();
+                    const newCard = {
+                        numero: addCardForm.numero.value,
+                        expiracion: addCardForm.expiracion.value
+                    };
+    
+                    try {
+                        const response = await fetch('/usuario/tarjeta', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(newCard)
+                        });
+    
+                        const result = await response.json();
+                        if (result.success) {
+                            cardList.innerHTML += `<div>${newCard.numero} - ${newCard.expiracion}</div>`;
+                            addCardForm.reset();
+                            addCardForm.style.display = 'none';
+                        } else {
+                            alert('Error al agregar tarjeta');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('Error al agregar tarjeta');
+                    }
+                }
+    
+                async function addVehicle(event) {
+                    event.preventDefault();
+                    const newVehicle = {
+                        marca: addVehicleForm.marca.value,
+                        modelo: addVehicleForm.modelo.value,
+                        placa: addVehicleForm.placa.value
+                    };
+    
+                    try {
+                        const response = await fetch('/usuario/vehiculo', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(newVehicle)
+                        });
+    
+                        const result = await response.json();
+                        if (result.success) {
+                            vehicleList.innerHTML += `<div>${newVehicle.marca} - ${newVehicle.modelo} - ${newVehicle.placa}</div>`;
+                            addVehicleForm.reset();
+                            addVehicleForm.style.display = 'none';
+                        } else {
+                            alert('Error al agregar vehículo');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('Error al agregar vehículo');
+                    }
+                }
+    
+                toggleSidebarBtn.addEventListener('click', toggleSidebar);
+                editProfileBtn.addEventListener('click', toggleEditMode);
+                fileInput.addEventListener('change', handleFileChange);
+                profileForm.addEventListener('submit', saveProfile);
+                addCardBtn.addEventListener('click', () => addCardForm.style.display = 'block');
+                addCardForm.addEventListener('submit', addCard);
+                addVehicleBtn.addEventListener('click', () => addVehicleForm.style.display = 'block');
+                addVehicleForm.addEventListener('submit', addVehicle);
+            });
+        </script>
+    </body>
+    </html>
+    

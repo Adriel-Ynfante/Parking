@@ -1,0 +1,436 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Times New Roman',"Gerogia" , sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #000000;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 35.0%; /* 1/8 of the screen */
+    background-color: #001022;
+    color: #ecf0f1;
+    padding: 20px;
+}
+
+
+.sidebar ul {
+    list-style-type: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #213243;
+}
+
+
+
+/* Estilos para el mapa ----------------------------------------------------- */
+#map {
+    width: 100%;
+    height: 300px;
+    border-bottom: 2px solid #007BFF;
+}
+
+.mapeo{
+    width: 65%;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+    white-space: nowrap;
+}
+.zona-button {
+    padding: 10px 15px;
+    margin-right: 5px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.zona-button.selected {
+    background-color: #0056b3;
+}
+.zona-info {
+    padding: 20px;
+    border: 1px solid #007BFF;
+    border-radius: 5px;
+    background-color: white;
+    margin-top: 10px;
+}
+.parking-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.parking-space {
+    width: 30px;
+    height: 30px;
+}
+.parking-space button {
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.available {
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+}
+.occupied {
+    background-color: red;
+    color: white;
+    border: 1px solid darkred;
+}
+.selected-space {
+    background-color: lightblue !important;
+    color: black !important;
+}
+
+/* -------------------------------------------------------------- */
+.formData {
+    width: 100%;
+    height: 40px; 
+    margin-bottom: 30px;
+
+  }
+
+.formData select {
+    width: 250px; /* adjust the width to your desired medium size */
+    height: 40px; /* adjust the height to your desired medium size */
+    font-family: 'Times New Roman',"Gerogia" , sans-serif;align-items: center;
+    width: 100%;
+  }
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.card h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.card h2 i {
+    margin-right: 10px;
+}
+
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.payment-sidebar {
+    width: 100%;
+    background-color: #ecf0f1;
+    padding: 20px;
+}
+
+.total-amount {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.boton {
+    width: 100%;
+    padding: 10px;
+    background-color: #02005f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+}
+
+.boton:hover {
+    background-color: #2943b9;
+}
+
+
+/* ... (estilos existentes) ... */
+
+.reservation-code {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.additional-payment-methods {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-left: 2px;
+}
+
+/* From Uiverse.io by e-coders */ 
+#btn {
+    appearance: none;
+    background-color: transparent;
+    border: 0.125em solid #1A1A1A;
+    border-radius: 0.9375em;
+    box-sizing: border-box;
+    color: #3B3B3B;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 15px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 1.5em;
+    min-width: 0;
+    outline: none;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    will-change: transform;
+   }
+   
+   #btn:disabled {
+    pointer-events: none;
+   }
+   
+   #btn:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+   }
+   
+   #btn:active {
+    box-shadow: none;
+    transform: translateY(0);
+   }
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000; /* Aseguramos que esté por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5); /* Fondo semi-transparente */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque en el fondo */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* Centrado vertical y horizontal */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+
+.pago{
+    width: 100%;
+    padding: 10px;
+    background-color: #01003c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+}
+
+.pago:hover {
+    background-color: #0735ff;
+}
+
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-row .form-group {
+    width: 48%;
+}
+
+/* Nuevos estilos para las zonas como pestañas */
+.zonas-container {
+    display: flex;
+    overflow-x: auto;
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #007BFF;
+    padding: 10px 0 0 10px;
+}
+
+.zona-template {
+    padding: 10px 15px;
+    margin-right: 5px;
+    background-color: #e0e0e0;
+    color: #333;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    white-space: nowrap;
+}
+
+.zona-template.selected {
+    background-color: #fff;
+    color: #007BFF;
+    border-color: #007BFF;
+    border-bottom: 2px solid #fff;
+    margin-bottom: -2px;
+}
+
+.zona-template h3 {
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+
+.zona-template p {
+    font-size: 0.8em;
+    margin: 0;
+}
+
+.zona-info {
+    padding: 20px;
+    border: 1px solid #007BFF;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    background-color: white;
+}
+
+
+/* Resto de los estilos existentes... */
+@media (max-width: 768px) {
+
+ .form-row {
+        flex-direction: column;
+    }
+
+    .form-row .form-group {
+        width: 100%;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar, .payment-sidebar {
+        width: 100%;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .zonas-container {
+        flex-wrap: wrap;
+    }
+
+    .zona-template {
+        flex: 1 1 calc(50% - 10px);
+        margin-bottom: 5px;
+    }
+
+    .mapeo{
+        width: 100%;
+    }
+
+    
+}

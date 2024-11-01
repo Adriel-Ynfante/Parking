@@ -1,0 +1,54 @@
+
+<style>
+    
+  /* Estilo del footer */
+  footer.datos {
+    background-color: #000000; 
+    color: #ffffff; 
+    padding: 20px; 
+    text-align: center; 
+    position:static; /* Permite posicionar el footer correctamente si se necesitan ajustes adicionales */
+    border-top: 2px solid #333; 
+  }
+  
+  footer .contenido {
+    max-width: 1200px; 
+    margin: 0 auto; 
+  }
+  
+  footer p {
+    margin-bottom: 10px; 
+    font-size: 0.875rem; 
+  }
+  
+  
+  footer nav {
+    display: flex;
+    justify-content: center; 
+    gap: 20px; 
+  }
+  
+  
+  footer nav a {
+    color: #ffffff; 
+    text-decoration: none; 
+    font-size: 0.875rem; 
+    transition: color 0.3s; 
+  }
+  
+  footer nav a:hover,
+  footer nav a:focus {
+    color: #0a00c0; 
+    text-decoration: underline; 
+  }
+  
+</style>
+<footer class="datos">
+    <div class="contenido">
+      <p>© 2024 Perseo. Derechos reservados.</p>
+      <nav class="flex items-center gap-4">
+        <a class="servicios" href="#">Terminos de Servicio</a>
+        <a class="politicas" href="#">Politicas de privacidad</a>
+      </nav>
+    </div>
+  </footer>

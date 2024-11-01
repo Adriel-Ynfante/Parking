@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de Espacios</title>
+    <link rel="stylesheet" href="/css/parking.css">
+</head>
+<body>
+    <%- include('../partials/header.ejs') %>
+    <%- include('../partials/sidebar.ejs') %>
+
+    <div class="content">
+        <h1>Espacios Disponibles en <%= parkingName %></h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Estado</th>
+                    <th>Reservado Por</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% spots.forEach(spot => { %>
+                    <tr>
+                        <td><%= spot.id %></td>
+                        <td><%= spot.status %></td>
+                        <td><%= spot.reservedBy || 'Libre' %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

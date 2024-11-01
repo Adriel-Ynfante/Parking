@@ -1,0 +1,23 @@
+<%- include('../layouts/main', { title: 'Estacionamientos' }) %>
+
+<div class="parking-container">
+    <h1>Estacionamientos</h1>
+    
+    <% if (user.role === 'company') { %>
+        <a href="/parking/create" class="btn-create">Crear Nuevo</a>
+    <% } %>
+
+    <div class="parking-grid">
+        <% parkings.forEach(parking => { %>
+            <div class="parking-card">
+                <h3><%= parking.name %></h3>
+                <p>Ubicación: <%= parking.location %></p>
+                <p>Espacios totales: <%= parking.totalSpots %></p>
+                <p>Espacios disponibles: <%= parking.availableSpots %></p>
+                <a href="/parking/<%= parking.id %>" class="btn-details">
+                    Ver detalles
+                </a>
+            </div>
+        <% }) %>
+    </div>
+</div>
