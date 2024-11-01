@@ -20,16 +20,11 @@ const checkSession = (req, res, next) => {
     }
     next();
 };
+
+// Configuraciones iniciales
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-// Configuraciones
-app.set("view engine", "ejs");
-
-// Configurar límites para payload más grandes (necesario para imágenes)
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: false, limit: '50mb' }));
 
 // Configuración de sesiones
 app.use(session({
@@ -43,12 +38,12 @@ app.use(session({
     }
 }));
 
-// Configuración de vistas y archivos estáticos
-app.set("views", path.join(__dirname, "src/views"));
-app.use(express.static(path.join(__dirname, "public")));
-
 // Aplicar middleware de sesión a todas las rutas
 app.use(checkSession);
+
+// Configuración de vistas
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "src/views"));
 
 // Rutas
 app.use(require("./src/rutas/index"));
@@ -67,13 +62,6 @@ app.use((req, res) => {
 });
 
 // Manejo de errores generales
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).render('errors/500'); // Asegúrate de tener una vista 500
-});
-
-
-// Manejo de errores
 app.use(errorHandler);
 
 // Variables de entorno
@@ -91,12 +79,10 @@ app.listen(PORT, () => {
 // Manejo de errores no capturados
 process.on('uncaughtException', (err) => {
     console.error('Error no capturado:', err);
-    // En producción, aquí podrías enviar el error a un servicio de monitoreo
     process.exit(1);
 });
 
 process.on('unhandledRejection', (err) => {
     console.error('Promesa rechazada no manejada:', err);
-    // En producción, aquí podrías enviar el error a un servicio de monitoreo
     process.exit(1);
 });
