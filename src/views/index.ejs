@@ -3,496 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parking Perseo</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Perseo - Estacionamiento</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
-
-    <style>
-        /* Estilos generales */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Times New Roman', serif; 
-  }
-  
-  body {
-    background-color: #ffffff; 
-    color: #000000; 
-  }
-  
-  /* Estilo del encabezado */
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.2rem 2rem; 
-    background-color: #000000; 
-    color: #ffffff; 
-    z-index: 50;
-    width: 100%;
-  }
-  
-  .logo_img{
-    border-radius: 80px;
-    width: 40px;
-    position: absolute;
-    margin: 20px 80px 20px;
-    }
-  
-  /* Estilo de la navegación */
-  .navegacion a {
-    margin: 0 15px; 
-    color: #ffffff; 
-    text-decoration: none; 
-    font-size: 1rem; 
-  }
-  
-  .navegacion a:hover,
-  .navegacion a:focus {
-    text-decoration: underline; 
-  }
-  
-  .btn {
-    border-radius: 50px;
-    padding: 8px 16px; 
-    border: 2px solid blue; 
-    background-color: transparent; 
-    color: blue; 
-    font-size: 0.875rem; 
-    cursor: pointer; 
-    transition: background-color 0.3s, color 0.3s; 
-  }
-  
-  .btn:hover,
-  .btn:focus {
-    background-color: blue;
-    color: #ffffff; 
-  }
-  
-  
-  
-  
-  /* Estilo del Main */
-  main {
-    display: grid;
-    grid-template-columns: 1fr; /* Una columna que ocupa todo el ancho del contenedor */
-    gap: 40px; /* Espacio entre las cartas */
-    padding: 20px;
-    background-color: #ffffff; 
-    box-sizing: border-box;
-  }
-  
-  
-  main section {
-    background-color: #ffffff; 
-    border-radius: 8px; 
-    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);    Sombra de la carta */
-    padding: 20px; 
-    box-sizing: border-box; 
-  }
-  
-  
-  main section h2 {
-    text-align: center;
-    margin-top: 0; 
-    margin-bottom: 20px; 
-    font-size: 1.5em;
-    color: #333;
-  }
-  
-  .h2_img{
-    border-radius: 80px;
-    width: 40px;
-    position: flex;
-    margin-bottom: 20px;
-    }
-  
-  .info-final{
-    text-align: center;
-  }
-  
-  
-  /* Articulo final */
-  
-  article {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
-    gap: 10px; 
-    padding: 25px;
-    background-color: #f0f0f0; 
-    box-sizing: border-box;
-  }
-  
-  .span{
-    text-align: center;
-  }
-  
-  .btn2{
-    width: 100%;
-    height: 45px;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: #090f1d;
-    color: #F1EFEF;
-    margin-top: 5px;
-  }
-
-  
-  .boton{
-    width: 100%;
-    height: 45px;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: #090f1d;
-    color: #F1EFEF;
-  }
-  
-  button:active {
-    transform: scale(0.95);
-  }
- 
-  
-  /* Estilo de la carta emergente */
-  .popup-overlay {
-    display: none; 
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .popup-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 600px;
-    position: relative;
-  }
-  
-  
-  .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 45px;
-    height: 45px;
-    background-color: #090f1d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom-left-radius: 25px;
-    z-index: 1;
-    font-size: 1.8em;
-    color: #F1EFEF;
-    cursor: pointer;
-  }
-  
-  .card-title {
-    text-align: center;
-    margin-top: 3px;
-    margin-bottom: 2px;
-  }
-  
-  .card_content{
-    padding: 10px;
-    text-decoration: none;
-  }
-  
-  .card_img{
-    border-radius: 100px;
-    box-shadow: 3px 3px 5px 3px #000;
-    width: 200px;
-    position: static;
-    margin-left: 160px;
-  }
-  
-  
-  
-  /* Estilo del footer */
-  footer.datos {
-    background-color: #000000; 
-    color: #ffffff; 
-    padding: 20px; 
-    text-align: center; 
-    position:static; /* Permite posicionar el footer correctamente si se necesitan ajustes adicionales */
-    border-top: 2px solid #333; 
-  }
-  
-  footer .contenido {
-    max-width: 1200px; 
-    margin: 0 auto; 
-  }
-  
-  footer p {
-    margin-bottom: 10px; 
-    font-size: 0.875rem; 
-  }
-  
-  
-  footer nav {
-    display: flex;
-    justify-content: center; 
-    gap: 20px; 
-  }
-  
-  
-  footer nav a {
-    color: #ffffff; 
-    text-decoration: none; 
-    font-size: 0.875rem; 
-    transition: color 0.3s; 
-  }
-  
-  footer nav a:hover,
-  footer nav a:focus {
-    color: #0a00c0; 
-    text-decoration: underline; 
-  }
-  
-  /* Ajusta el contenedor de las imágenes del carrusel a 50px x 50px */
-  .carousel-inner .carousel-item {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* Ajusta las imágenes para que se ajusten al contenedor sin distorsión */
-  .carousel-inner .carousel-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Mantiene la proporción de la imagen y la recorta si es necesario */
-  }
-  
-  /* Ajusta el tamaño de los indicadores del carrusel */
-  .carousel-indicators button {
-    width: 50px;
-    height: 50px;
-    background-color: #000; /* Color de fondo de los indicadores */
-  }
-  
-  .carousel-indicators .active {
-    background-color: #fff; /* Color del indicador activo */
-  }
-  
-  /* Ajusta el tamaño de los controles del carrusel */
-  .carousel-control-prev, .carousel-control-next {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .carousel-control-prev-icon, .carousel-control-next-icon {
-    background-size: 50px 50px;
-  }
-  
-    </style>
-
     <header>
-        <h2 class="logo"> Perseo  </h2> 
+        <h2 class="logo">Perseo</h2>
         <nav class="navegacion">
-            <a href="#">Reservar</a>
+            <a href="/usuario">Reservar</a>
             <a href="#" class="open-card1">Informacion</a>
-            <a href="#" class="open-card2" >Contactos</a>
-            <button class="btn"><a href="registro.html">Iniciar Sesion</a></button>
+            <a href="#" class="open-card2">Contactos</a>
+            <button class="btn"><a href="/registro">Iniciar Sesion</a></button>
         </nav>
     </header>
 
-    <!-- Carta emergente -->
+    <!-- Carta emergente Información -->
     <div class="popup-overlay" id="popup1">
-            <div class="popup-content">
-                <span class="close-btn" id="close-btn1">&times;</span>
-                <h2 class="card-title">Informacion</h2>
-                <p class="card_content">
-                    <p>En Perseo, ofrecemos un espacio seguro y conveniente para aparcar su vehículo. Nuestra ubicación estratégica en el corazón de 
-                    Piura facilita el acceso a tiendas, restaurantes y atracciones locales.   </p>
-                </p> <br>
-                <img class="card_img" src="https://aws-images-prod.sindonews.net/dyn/600/pena/sindo-article/original/2022/05/18/ANIME0357.jpg" alt="El mejor guerrero">
-            </div>
+        <div class="popup-content">
+            <span class="close-btn" id="close-btn1">&times;</span>
+            <h2 class="card-title">Informacion</h2>
+            <p class="card_content">
+                <p>En Perseo, ofrecemos un espacio seguro y conveniente para aparcar su vehículo. 
+                Nuestra ubicación estratégica en el corazón de Piura facilita el acceso a tiendas, 
+                restaurantes y atracciones locales.</p>
+            </p><br>
+            <img class="card_img" src="https://aws-images-prod.sindonews.net/dyn/600/pena/sindo-article/original/2022/05/18/ANIME0357.jpg" alt="El mejor guerrero">
+        </div>
     </div>
 
-
-        <!-- Carta emergente -->
+    <!-- Carta emergente Contacto -->
     <div class="popup-overlay" id="popup2">
-            <div class="popup-content">
-                <span class="close-btn" id="close-btn2">&times;</span>
-                <h2 class="card-title">Contacto</h2>
-                <p class="card_content">
-                    <strong>¿Tienes preguntas o necesitas más información? ¡Estamos aquí para ayudarte!</strong>
-                    <br>
-                    <p><i class="bi bi-telephone"></i> Teléfono: <strong>999888777</strong></p>
-                    <p><i class="bi bi-envelope-at-fill"></i> Correo Electrónico: <a href="mailto:perseoparking@gmail.com">perseoparking@gmail.com</a></p>
-                    <p><i class="bi bi-geo-alt"></i> Dirección: <strong>Piura</strong></p>
-                    <p><i class="bi bi-calendar-event"></i> Horario de Atención: <strong>Todos los días de la semana, excepto feriados</strong></p>
-                    <br>
-                </p>
-                <img class="card_img" src="https://th.bing.com/th/id/OIP.68ZuqWqBIn-WpMRrwkGcIQHaD5?rs=1&pid=ImgDetMain" alt="El mejor guerrero">
-            </div>
+        <div class="popup-content">
+            <span class="close-btn" id="close-btn2">&times;</span>
+            <h2 class="card-title">Contacto</h2>
+            <p class="card_content">
+                <strong>¿Tienes preguntas o necesitas más información? ¡Estamos aquí para ayudarte!</strong>
+                <br>
+                <p><i class="bi bi-telephone"></i> Teléfono: <strong>999 888 777</strong></p>
+                <p><i class="bi bi-envelope-at-fill"></i> Correo Electrónico: 
+                   <a href="mailto:perseoparking@gmail.com">perseoparking@gmail.com</a></p>
+                <p><i class="bi bi-geo-alt"></i> Dirección: <strong>Piura</strong></p>
+                <p><i class="bi bi-calendar-event"></i> Horario de Atención: 
+                   <strong>Todos los días de la semana, excepto feriados</strong></p>
+                <br>
+            </p>
+            <img class="card_img" src="https://th.bing.com/th/id/OIP.68ZuqWqBIn-WpMRrwkGcIQHaD5?rs=1&pid=ImgDetMain" alt="El mejor guerrero">
+        </div>
     </div>
-
- 
 
     <main>
-
         <section>
-            <h2>Perseo</h2> 
+            <h2>Perseo</h2>
+            <p>
+                Bienvenidos a ParkSeo, el estacionamiento premium que revoluciona la forma de cuidar tu vehículo. 
+                Nuestras instalaciones de última generación cuentan con tecnología de vigilancia 24/7, iluminación 
+                LED inteligente y sistemas automatizados de control de acceso que garantizan la máxima seguridad 
+                para tu automóvil.
 
-             <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil facere eaque odio laborum dignissimos placeat ad totam dicta. Eligendi dicta ipsam voluptas
-             necessitatibus officia quo, voluptatem quia enim tempora corporis.
-             Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima nihil impedit, quibusdam aut quo non accusantium iste omnis saepe accusamus, necessitatibus explicabo quasi
-             doloremque voluptatibus sint consequuntur natus quaerat. Officiis?
-             Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia distinctio saepe sequi vero quisquam aperiam maiores facilis, recusandae voluptates quis laudantium vel 
-             voluptatum amet fugit suscipit soluta possimus praesentium optio!
-             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste aliquid exercitationem ea corrupti blanditiis placeat eius obcaecati quis porro officia sint reiciendis quidem 
-             architecto quasi laudantium, possimus minima incidunt. Repudiandae.
-            
-        </p>
+                Ubicados estratégicamente en el corazón de la ciudad, ofrecemos más que un simple espacio de 
+                estacionamiento: brindamos una experiencia completa de servicio y tranquilidad. Nuestro personal 
+                altamente capacitado está siempre disponible para asistirte, mientras que nuestras amplias bahías 
+                de estacionamiento aseguran la integridad de tu vehículo.
 
-
+                Con certificación de calidad ISO 9001 y reconocidos con 5 estrellas por la Asociación Internacional 
+                de Estacionamientos, ParkSeo establece el estándar en servicios de estacionamiento de primera clase.
+                Disfruta de nuestras instalaciones climatizadas, sistema de reserva en línea y servicios adicionales 
+                que hacen de cada visita una experiencia excepcional.
+            </p>
         </section>
 
         <section>
-             <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil facere eaque odio laborum dignissimos placeat ad totam dicta. Eligendi dicta ipsam voluptas
-             necessitatibus officia quo, voluptatem quia enim tempora corporis.
-             Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima nihil impedit, quibusdam aut quo non accusantium iste omnis saepe accusamus, necessitatibus explicabo quasi
-             doloremque voluptatibus sint consequuntur natus quaerat. Officiis?
-        </p>
+            <p>
+                En ParkSeo, la innovación se encuentra con la seguridad. Nuestro sistema de circuito cerrado con 
+                más de 100 cámaras de alta definición, guardias de seguridad certificados y control biométrico de 
+                acceso garantizan la protección total de tu vehículo. Además, nuestro seguro de cobertura completa 
+                te brinda la tranquilidad que mereces durante tu estancia.
+            </p>
         </section>
 
         <span class="span">DESCUBRE LO QUE TENEMOS PARA TI</span>
 
         <article>
-            
             <section>
                 <h2>Para empresas</h2>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum cumque aut, cupiditate vel accusantium pariatur? Totam,
-                    similique porro eius, necessitatibus dolores perferendis inventore quos vel temporibus autem ipsam delectus aliquam.
+                    Optimiza la gestión de tu flota empresarial con nuestros planes corporativos personalizados. 
+                    Ofrecemos espacios reservados, facturación centralizada, reportes detallados de uso y acceso 
+                    prioritario. Nuestro servicio de valet parking y sistema de gestión en tiempo real maximizarán 
+                    la eficiencia de tus operaciones vehiculares.
                 </p>
                 <button class="btn2">Ver productos</button>
             </section>
-    
+
             <section>
                 <h2>Para personas</h2>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum cumque aut, cupiditate vel accusantium pariatur? Totam,
-                    similique porro eius, necessitatibus dolores perferendis inventore quos vel temporibus autem ipsam delectus aliquam.
+                    Disfruta de una experiencia de estacionamiento sin preocupaciones con nuestras membresías 
+                    personales. Incluyen lavado básico mensual, servicio de recarga para vehículos eléctricos, 
+                    asistencia vehicular de emergencia y acceso a nuestra sala de espera VIP con café gourmet 
+                    gratuito y Wi-Fi de alta velocidad.
                 </p>
-
                 <button class="btn2">Ver productos</button>
             </section>
-    
+        </article>
 
-            
-    
-         </article>
-
-        </section>
-       
-
-        
-        
         <section class="info-final">
-        <p>Tu vehículo merece lo mejor. Confía en Perseo 
-            para una experiencia de estacionamiento segura, conveniente y económica. ¡Te esperamos!</p>
+            <p>Tu vehículo merece lo mejor. Confía en Perseo para una experiencia de 
+               estacionamiento 5 estrellas con la máxima seguridad y comodidad. ¡Te esperamos en ParkSeo, donde tu 
+               tranquilidad es nuestra prioridad!</p>
         </section>
 
+        <article>
+            <section>
+                <h2>¿Por qué nosotros?</h2>
+                <p>
+                    Elegir ParkSeo significa optar por la excelencia. Somos el único estacionamiento de la ciudad 
+                    con certificación 5 estrellas, sistema anti-incendios de última generación y seguro de 
+                    cobertura total. Nuestro compromiso con la satisfacción del cliente se refleja en nuestra 
+                    calificación perfecta en servicios y atención personalizada.
+                </p>
+            </section>
 
+            <section>
+                <h2>Ofertas</h2>
+                <p>
+                    Aprovecha nuestras promociones exclusivas: 50% de descuento en tu primer mes de membresía, 
+                    tarifas preferenciales para estancias largas, y paquetes especiales de fin de semana. 
+                    Regístrate en nuestra aplicación móvil y obtén beneficios adicionales como reservas 
+                    prioritarias y puntos canjeables por servicios premium.
+                </p>
+            </section>
 
-
-
-     <article>
-
-        <section>
-            <h2>¿Por que nosostros?</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum cumque aut, cupiditate vel accusantium pariatur? Totam,
-                similique porro eius, necessitatibus dolores perferendis inventore quos vel temporibus autem ipsam delectus aliquam.
-            </p>
-
-        </section>
-
-        <section>
-            <h2>Ofertas</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum cumque aut, cupiditate vel accusantium pariatur? Totam,
-                similique porro eius, necessitatibus dolores perferendis inventore quos vel temporibus autem ipsam delectus aliquam.
-            </p>
-        </section>
-
-        
-        <section>
-            <h2>Reglas</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum cumque aut, cupiditate vel accusantium pariatur? Totam,
-                similique porro eius, necessitatibus dolores perferendis inventore quos vel temporibus autem ipsam delectus aliquam.
-        </p>
-        </section>
-
-     </article>
+            <section>
+                <h2>Reglas</h2>
+                <p>
+                    Para garantizar una experiencia excepcional, mantenemos estándares estrictos de seguridad y 
+                    servicio. Contamos con protocolos de sanitización constante, espacios especialmente diseñados 
+                    para vehículos de lujo y sistema de monitoreo ambiental. Tu seguridad y satisfacción son 
+                    nuestra prioridad.
+                </p>
+            </section>
+        </article>
     </main>
 
-     <footer class="datos">
+    <footer class="datos">
         <div class="contenido">
-          <p>© 2024 Perseo. Derechos reservados.</p>
-          <nav class="flex items-center gap-4">
-            <a class="servicios" href="#">Terminos de Servicio</a>
-            <a class="politicas" href="#">Politicas de privacidad</a>
-          </nav>
+            <p>© 2024 Perseo. Derechos reservados.</p>
+            <nav class="flex items-center gap-4">
+                <a class="servicios" href="#">Terminos de Servicio</a>
+                <a class="politicas" href="#">Politicas de privacidad</a>
+            </nav>
         </div>
-      </footer>
-    
+    </footer>
 
-      <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Configurar popup cards
-            const configurarCartaEmergente = (openSelector, popupId, closeBtnId) => {
-                const openLink = document.querySelector(openSelector);
-                const popup = document.getElementById(popupId);
-                const closeBtn = document.getElementById(closeBtnId);
-    
-                if (openLink && popup && closeBtn) {
-                    openLink.addEventListener('click', (event) => {
-                        event.preventDefault();
-                        popup.style.display = 'flex';
-                    });
-    
-                    closeBtn.addEventListener('click', () => {
-                        popup.style.display = 'none';
-                    });
-    
-                    window.addEventListener('click', (event) => {
-                        if (event.target === popup) {
-                            popup.style.display = 'none';
-                        }
-                    });
-                }
-            };
-    
-            // Configurar popup cards
-            configurarCartaEmergente('.open-card1', 'popup1', 'close-btn1');
-            configurarCartaEmergente('.open-card2', 'popup2', 'close-btn2');
-        });
-    </script>
-    
-
+    <script src="/js/index.js"></script>
 </body>
-</html>   
+</html>

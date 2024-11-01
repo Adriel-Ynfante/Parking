@@ -1,78 +1,16 @@
-
-<style>
-    .container {
-         display: flex;
-         min-height: 100vh;
-       }
-         
-      .sidebar {
-          width: 12.0%; /* 1/8 of the screen */
-          background-color: #001022;
-          color: #ecf0f1;
-          padding: 20px;
-      }
-      
-      .sidebar ul {
-          list-style-type: none;
-      }
-      
-      .sidebar ul li {
-          margin-bottom: 15px;
-      }
-      
-      .sidebar ul li a {
-          color: #ecf0f1;
-          text-decoration: none;
-          display: flex;
-          align-items: center;
-      }
-      
-      .sidebar ul li a i {
-          margin-right: 10px;
-      }
-  
-      .user-data{
-        margin-top: 350px;
-      }
-      
-      .main-content {
-          flex-grow: 1;
-          padding: 20px;
-      }
-      
-      h1 {
-          text-align: center;
-          margin-bottom: 20px;
-          color: #10161d;
-      }
-      
-      
-      @media (max-width: 768px) {
-          .container {
-              flex-direction: column;
-          }
-      }
-      </style>
-          <!-- Menú lateral -->
-          <aside class="sidebar">
-              <nav>
-                  <ul>
-                      <li><a href="/home"><i class="bi bi-house"></i> Inicio</a></li>
-                      <li><a href="/reservar"><i class="bi bi-feather"></i> Reservar</a></li>
-                      <li><a href="#"><i class="bi bi-calendar-week"></i> Mis Reservas</a></li>
-                      <li><a href="#"><i class="bi bi-duffle"></i> Servicios</a></li>
-                      <li><a href="#"><i class="bi bi-bookmark-star"></i> Promociones</a></li>
-                      <li><a href="#"><i class="bi bi-question-diamond-fill"></i> Ayuda</a></li>
-                   </ul>
-                  <br>
-                 
-                  <ul class="user-data">
-                    <li ><a href="/usuario"><i class="bi bi-person-circle"></i><%=datos.codnombre%></a></li>
-                    <li><a href="#"><i class="bi bi-envelope-at-fill"></i><%=datos.codemail%></a></li>
-                  </ul>
-                  
-              </nav>
-  
-          </aside>
-  
-  
+<link rel="stylesheet" href="/src/public/css/sidebar.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<nav id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <span class="menu-title">Menú</span>
+        <button id="toggleSidebar" class="toggle-sidebar" aria-label="Alternar menú">
+            <i data-lucide="menu"></i>
+        </button>
+    </div>
+    <ul class="sidebar-menu">
+        <li><i data-lucide="user"></i> <span>Perfil</span></li>
+        <li><i data-lucide="settings"></i> <span>Configuración</span></li>
+        <li><i data-lucide="log-out"></i> <span>Cerrar Sesión</span></li>
+    </ul>
+</nav>
+<script src="/src/public/js/sidebar.js"></script>
